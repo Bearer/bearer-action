@@ -4,10 +4,6 @@ Run [Curio](https://curio.sh/) as a [GitHub Action](https://github.com/features/
 
 ## Inputs
 
-### `scan-path`
-
-**Optional** The path to be scanned; defaults to the `GITHUB_WORKSPACE` environment variable
-
 ### `config-file`
 
 **Optional** Curio configuration file path
@@ -51,7 +47,6 @@ uses: bearer/curio-action@v1
 ``` yaml
 uses: bearer/curio-action@v1
 with:
-  scan-path: /some/repo/path
   config-file: '/some/path/curio.yml'
   only-policy: 'CR-001,CR-004'
   skip-path: 'users/*.go,users/admin.sql'

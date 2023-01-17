@@ -1,10 +1,6 @@
 name: 'Curio'
 description: 'Scan your source code for security risks and sensitive data vulnerabilities'
 inputs:
-  scan-path:
-    description: 'The path to be scanned'
-    required: false
-    default: ${{ github.workspace }}
   config-file:
     description: 'Curio configuration file path'
     required: false
@@ -35,8 +31,6 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    SCAN_PATH: ${{ inputs.scan-path }}
   args:
     - '--config-file=${{ inputs.config-file }}'
     - '--only-policy=${{ inputs.only-policy }}'
