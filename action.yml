@@ -4,7 +4,7 @@ inputs:
   scan-path:
     description: 'The path to be scanned'
     required: false
-    default: ''
+    default: ${{ env.GITHUB_WORKSPACE }}
   config-file:
     description: 'Curio configuration file path'
     required: false
@@ -36,7 +36,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    SCAN_PATH: ${{ github.events.inputs.scan-path || env.GITHUB_WORKSPACE }}
+    SCAN_PATH: ${{ inputs.scan-path }}
   args:
     - '--config-file=${{ inputs.config-file }}'
     - '--only-policy=${{ inputs.only-policy }}'
