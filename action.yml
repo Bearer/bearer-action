@@ -4,7 +4,7 @@ inputs:
   scan-path:
     description: 'The path to be scanned'
     required: false
-    default: ${{ env.GITHUB_WORKSPACE }}
+    default: ${{ github.workspace }}
   config-file:
     description: 'Curio configuration file path'
     required: false
