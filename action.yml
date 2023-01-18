@@ -26,6 +26,8 @@ inputs:
     required: false
     default: ''
 outputs:
+  time:
+    description: 'The time'
   policy_breaches:
     description: 'Details of any policy breaches that occur'
 runs:
