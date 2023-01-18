@@ -39,15 +39,20 @@ Details of any policy breaches that occur
 ### Using defaults
 
 ``` yaml
-uses: bearer/curio-action@v1
+steps:
+  - uses: actions/checkout@v3
+  - uses: bearer/curio-action@v1
 ```
 
 ### Using custom values for inputs
 
 ``` yaml
-uses: bearer/curio-action@v1
-with:
-  config-file: '/some/path/curio.yml'
-  only-policy: 'CR-001,CR-004'
-  skip-path: 'users/*.go,users/admin.sql'
+steps:
+  - uses: actions/checkout@v3
+  - name: Curio
+    uses: bearer/curio-action@v1
+    with:
+      config-file: '/some/path/curio.yml'
+      only-policy: 'CR-001,CR-004'
+      skip-path: 'users/*.go,users/admin.sql'
 ```
