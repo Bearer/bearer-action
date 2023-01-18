@@ -30,7 +30,7 @@ Run [Curio](https://curio.sh/) as a [GitHub Action](https://github.com/features/
 
 ## Outputs
 
-### `policy-breaches`
+### `policy_breaches`
 
 Details of any policy breaches that occur
 

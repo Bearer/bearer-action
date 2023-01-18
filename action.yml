@@ -26,7 +26,7 @@ inputs:
     required: false
     default: ''
 outputs:
-  policy-breaches:
+  policy_breaches:
     description: 'Details of any policy breaches that occur'
 runs:
   using: 'docker'
