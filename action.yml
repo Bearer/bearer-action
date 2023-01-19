@@ -1,0 +1,42 @@
+name: 'Curio'
+description: 'Scan your source code for security risks and sensitive data vulnerabilities'
+inputs:
+  config-file:
+    description: 'Curio configuration file path'
+    required: false
+    default: ''
+  only-policy:
+    description: 'Specify the comma-separated ids of the policies you would like to run. Skips all other policies.'
+    required: false
+    default: ''
+  skip-policy:
+    description: 'Specify the comma-separated ids of the policies you would like to skip. Runs all other policies.'
+    required: false
+    default: ''
+  only-detector:
+    description: 'Specify the comma-separated ids of the detectors you would like to run. Skips all other detectors.'
+    required: false
+    default: ''
+  skip-detector:
+    description: 'Specify the comma-separated ids of the detectors you would like to skip. Runs all other detectors.'
+    required: false
+    default: ''
+  skip-path:
+    description: 'Specify the comma separated files and directories to skip. Supports * syntax, e.g. --skip-path users/*.go,users/admin.sql'
+    required: false
+    default: ''
+outputs:
+  policy_breaches:
+    description: 'Details of any policy breaches that occur'
+  exit_code:
+    description: 'exit code from curio binary'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - '--config-file=${{ inputs.config-file }}'
+    - '--only-policy=${{ inputs.only-policy }}'
+    - '--skip-policy=${{ inputs.skip-policy }}'
+    - '--only-detector=${{ inputs.only-detector }}'
+    - '--skip-detector=${{ inputs.skip-detector }}'
+    - '--skip-path=${{ inputs.skip-path }}'
