@@ -55,6 +55,7 @@ jobs:
             const passed = `${{ steps.report.outputs.exit_code }}` == "0";
             if(!passed){ core.setFailed(report); }
 ```
+you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/curio.yml)
 
 ## Inputs
 
