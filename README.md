@@ -21,7 +21,7 @@ steps:
     uses: bearer/curio-action@v0.1
     with:
       config-file: '/some/path/curio.yml'
-      only-policy: 'CR-001,CR-004'
+      only-rule: 'CR-001,CR-004'
       skip-path: 'users/*.go,users/admin.sql'
 ```
 ### Full Reporting Example
@@ -38,7 +38,7 @@ permissions:
   contents: read
 
 jobs:
-  policy_check:
+  rule_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
         with:
           script: |
             // github does not support multiline outputs so report is encoded
-            const report = decodeURIComponent(`${{ steps.report.outputs.policy_breaches }}`);
+            const report = decodeURIComponent(`${{ steps.report.outputs.rule_breaches }}`);
             const passed = `${{ steps.report.outputs.exit_code }}` == "0";
             if(!passed){ core.setFailed(report); }
 ```
@@ -63,13 +63,13 @@ you can see this workflow in action on our [demo repo](https://github.com/Bearer
 
 **Optional** Curio configuration file path
 
-### `only-policy`
+### `only-rule`
 
-**Optional** Specify the comma-separated IDs of the policies to run; skips all other policies
+**Optional** Specify the comma-separated IDs of the rules to run; skips all other rules.
 
-### `skip-policy`
+### `skip-rule`
 
-**Optional** Specify the comma-separated IDs of the policies to skip; runs all other policies
+**Optional** Specify the comma-separated IDs of the rules to skip; runs all other rules.
 
 ### `only-detector`
 
@@ -85,9 +85,9 @@ you can see this workflow in action on our [demo repo](https://github.com/Bearer
 
 ## Outputs
 
-### `policy_breaches`
+### `rule_breaches`
 
-Details of any policy breaches that occur. This is URL encoded to work round githubs issues with multiline outputs.
+Details of any rule breaches that occur. This is URL encoded to work round GitHub issues with multiline outputs.
 
 ### `exit_code`
 
