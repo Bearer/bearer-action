@@ -21,7 +21,7 @@ steps:
     uses: bearer/curio-action@v0.1
     with:
       config-file: '/some/path/curio.yml'
-      only-rule: 'CR-001,CR-004'
+      only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
       skip-path: 'users/*.go,users/admin.sql'
 ```
 ### Full Reporting Example
