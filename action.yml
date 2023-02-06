@@ -16,14 +16,6 @@ inputs:
     description: "Specify the comma-separated ids of the rules you would like to skip. Runs all other rules."
     required: false
     default: ""
-  only-detector:
-    description: "Specify the comma-separated ids of the detectors you would like to run. Skips all other detectors."
-    required: false
-    default: ""
-  skip-detector:
-    description: "Specify the comma-separated ids of the detectors you would like to skip. Runs all other detectors."
-    required: false
-    default: ""
   skip-path:
     description: "Specify the comma separated files and directories to skip. Supports * syntax, e.g. --skip-path users/*.go,users/admin.sql"
     required: false
@@ -40,6 +32,4 @@ runs:
     - "--config-file=${{ inputs.config-file }}"
     - "--only-rule=${{ inputs.only-rule }}"
     - "--skip-rule=${{ inputs.skip-rule }}"
-    - "--only-detector=${{ inputs.only-detector }}"
-    - "--skip-detector=${{ inputs.skip-detector }}"
     - "--skip-path=${{ inputs.skip-path }}"
