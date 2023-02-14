@@ -75,6 +75,10 @@ you can see this workflow in action on our [demo repo](https://github.com/Bearer
 
 **Optional** Specify the comma-separated paths to skip. Supports wildcard syntax, e.g. `users/*.go,users/admin.sql`
 
+### `severity`
+
+**Optional** Specify which severities are included in the report as a comma separated string, e.g. `critical,medium`
+
 ## Outputs
 
 ### `rule_breaches`

@@ -20,6 +20,10 @@ inputs:
     description: "Specify the comma separated files and directories to skip. Supports * syntax, e.g. --skip-path users/*.go,users/admin.sql"
     required: false
     default: ""
+  severity:
+    description: "Specify which severities are included in the report as a comma separated string"
+    required: false
+    default: "critical,high,medium,low,warning"
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
@@ -33,3 +37,4 @@ runs:
     - "--only-rule=${{ inputs.only-rule }}"
     - "--skip-rule=${{ inputs.skip-rule }}"
     - "--skip-path=${{ inputs.skip-path }}"
+    - "--severity=${{ inputs.severity }}"
