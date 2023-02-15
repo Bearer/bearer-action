@@ -9,7 +9,7 @@ Run [Curio](https://curio.sh/) as a [GitHub Action](https://github.com/features/
 ``` yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: bearer/curio-action@v0.2
+  - uses: bearer/curio-action@v0.3
 ```
 
 ### Using custom values for inputs
@@ -18,7 +18,7 @@ steps:
 steps:
   - uses: actions/checkout@v3
   - name: Curio
-    uses: bearer/curio-action@v0.2
+    uses: bearer/curio-action@v0.3
     with:
       config-file: '/some/path/curio.yml'
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Report
         id: report
-        uses: bearer/curio-action@v0.2
+        uses: bearer/curio-action@v0.3
       - id: summary
         name: Display Summary
         uses: actions/github-script@v6
