@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-RULE_BREACHES=`curio scan --quiet $* .`
+RULE_BREACHES=`bearer scan --quiet $* .`
 SCAN_EXIT_CODE=$?
 
 echo "::debug::$RULE_BREACHES"
