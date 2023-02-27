@@ -9,7 +9,7 @@ Run [Bearer](https://docs.bearer.com/) as a [GitHub Action](https://github.com/f
 ``` yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: bearer/bearer-action@v0.3
+  - uses: bearer/bearer-action@v0.4
 ```
 
 ### Using custom values for inputs
@@ -18,7 +18,7 @@ steps:
 steps:
   - uses: actions/checkout@v3
   - name: Bearer
-    uses: bearer/bearer-action@v0.3
+    uses: bearer/bearer-action@v0.4
     with:
       config-file: '/some/path/bearer.yml'
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Report
         id: report
-        uses: bearer/bearer-action@v0.3
+        uses: bearer/bearer-action@v0.4
       - id: summary
         name: Display Summary
         uses: actions/github-script@v6
