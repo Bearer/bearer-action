@@ -1,6 +1,6 @@
-# Curio Action
+# Bearer Action
 
-Run [Curio](https://curio.sh/) as a [GitHub Action](https://github.com/features/actions).
+Run [Bearer](https://docs.bearer.com/) as a [GitHub Action](https://github.com/features/actions).
 
 ## Example usage
 
@@ -9,7 +9,7 @@ Run [Curio](https://curio.sh/) as a [GitHub Action](https://github.com/features/
 ``` yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: bearer/curio-action@v0.3
+  - uses: bearer/bearer-action@v0.3
 ```
 
 ### Using custom values for inputs
@@ -17,17 +17,17 @@ steps:
 ``` yaml
 steps:
   - uses: actions/checkout@v3
-  - name: Curio
-    uses: bearer/curio-action@v0.3
+  - name: Bearer
+    uses: bearer/bearer-action@v0.3
     with:
-      config-file: '/some/path/curio.yml'
+      config-file: '/some/path/bearer.yml'
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
       skip-path: 'users/*.go,users/admin.sql'
 ```
 ### Full Reporting Example
 
 ```yaml
-name: Curio
+name: Bearer
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Report
         id: report
-        uses: bearer/curio-action@v0.3
+        uses: bearer/bearer-action@v0.3
       - id: summary
         name: Display Summary
         uses: actions/github-script@v6
@@ -55,13 +55,13 @@ jobs:
             const passed = `${{ steps.report.outputs.exit_code }}` == "0";
             if(!passed){ core.setFailed(report); }
 ```
-you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/curio.yml)
+you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/bearer.yml)
 
 ## Inputs
 
 ### `config-file`
 
-**Optional** Curio configuration file path
+**Optional** configuration file path
 
 ### `only-rule`
 
@@ -87,4 +87,4 @@ Details of any rule breaches that occur. This is URL encoded to work round GitHu
 
 ### `exit_code`
 
-Exit code of the curio binary, 0 indicates a pass
+Exit code of the binary, 0 indicates a pass
