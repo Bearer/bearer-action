@@ -4,6 +4,10 @@ branding:
   icon: "check-square"
   color: "purple"
 inputs:
+  scanner:
+    description: "Specify the comma separated scanners e.g. --scanner secrets,sast"
+    required: false
+    default: "sast"
   config-file:
     description: "configuration file path"
     required: false
@@ -33,6 +37,7 @@ runs:
   using: "docker"
   image: "Dockerfile"
   args:
+    - "--scanner=${{ inputs.scanner }}"
     - "--config-file=${{ inputs.config-file }}"
     - "--only-rule=${{ inputs.only-rule }}"
     - "--skip-rule=${{ inputs.skip-rule }}"

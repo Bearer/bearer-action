@@ -24,6 +24,7 @@ steps:
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
       skip-path: 'users/*.go,users/admin.sql'
 ```
+
 ### Full Reporting Example
 
 ```yaml
@@ -55,9 +56,14 @@ jobs:
             const passed = `${{ steps.report.outputs.exit_code }}` == "0";
             if(!passed){ core.setFailed(report); }
 ```
+
 you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/bearer.yml)
 
 ## Inputs
+
+### `scanner`
+
+**Optional** Specify the comma-separated scanner to use e.g. `sast,secrets`
 
 ### `config-file`
 
