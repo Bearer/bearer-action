@@ -7,7 +7,7 @@ inputs:
   scanner:
     description: "Specify the comma separated scanners e.g. --scanner secrets,sast"
     required: false
-    default: "sast"
+    default: ""
   config-file:
     description: "configuration file path"
     required: false
@@ -27,7 +27,7 @@ inputs:
   severity:
     description: "Specify which severities are included in the report as a comma separated string"
     required: false
-    default: "critical,high,medium,low,warning"
+    default: ""
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
