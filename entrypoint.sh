@@ -1,12 +1,9 @@
 #!/bin/sh -l
 
 # Filter out any empty args
-args=($@)
-given_args=($(for i in ${args[@]}
-    do echo $i
-done | grep =.))
+args=$(for var in "$@"; do echo "$var";done | grep =.)
 
-RULE_BREACHES=`bearer scan --quiet ${given_args[@]} .`
+RULE_BREACHES=`bearer scan --quiet ${args//$'\n'/ } .`
 SCAN_EXIT_CODE=$?
 
 echo "::debug::$RULE_BREACHES"
