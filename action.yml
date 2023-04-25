@@ -4,6 +4,10 @@ branding:
   icon: "check-square"
   color: "purple"
 inputs:
+  version:
+    description: "Specify the Bearer version to use. This must match a Bearer release name."
+    required: false
+    default: ""
   scanner:
     description: "Specify the comma separated scanners e.g. --scanner secrets,sast"
     required: false
@@ -34,12 +38,22 @@ outputs:
   exit_code:
     description: "exit code from binary"
 runs:
-  using: "docker"
-  image: "Dockerfile"
-  args:
-    - "--scanner=${{ inputs.scanner }}"
-    - "--config-file=${{ inputs.config-file }}"
-    - "--only-rule=${{ inputs.only-rule }}"
-    - "--skip-rule=${{ inputs.skip-rule }}"
-    - "--skip-path=${{ inputs.skip-path }}"
-    - "--severity=${{ inputs.severity }}"
+  using: "composite"
+  steps:
+    - name: Install
+      shell: bash
+      run: |
+        VERSION="${{ inputs.version }}"
+        VERSION="${VERSION#v}"
+
+        curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b "$RUNNER_TEMP" "v$VERSION"
+    - name: Run
+      shell: bash
+      run: |
+        $GITHUB_ACTION_PATH/entrypoint.sh \
+          "--scanner=${{ inputs.scanner }}" \
+          "--config-file=${{ inputs.config-file }}" \
+          "--only-rule=${{ inputs.only-rule }}" \
+          "--skip-rule=${{ inputs.skip-rule }}" \
+          "--skip-path=${{ inputs.skip-path }}" \
+          "--severity=${{ inputs.severity }}"
