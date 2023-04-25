@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 # Filter out any empty args
 args=$(for var in "$@"; do echo "$var";done | grep =.)
