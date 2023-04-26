@@ -44,9 +44,11 @@ runs:
       shell: bash
       run: |
         VERSION="${{ inputs.version }}"
-        VERSION="${VERSION#v}"
+        if [[ ! -z "$VERSION" ]]; then
+          VERSION="v${VERSION#v}"
+        fi
 
-        curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b "$RUNNER_TEMP" "v$VERSION"
+        curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b "$RUNNER_TEMP" "$VERSION"
     - name: Run
       shell: bash
       run: |
