@@ -35,13 +35,14 @@ inputs:
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
+    value: ${{ steps.run.outputs.rule_breaches }}
   exit_code:
     description: "exit code from binary"
+    value: ${{ steps.run.outputs.exit_code }}
 runs:
   using: "composite"
   steps:
-    - name: Install
-      shell: bash
+    - shell: bash
       run: |
         VERSION="${{ inputs.version }}"
         if [[ ! -z "$VERSION" ]]; then
@@ -49,7 +50,7 @@ runs:
         fi
 
         curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b "$RUNNER_TEMP" "$VERSION"
-    - name: Run
+    - id: run
       shell: bash
       run: |
         $GITHUB_ACTION_PATH/entrypoint.sh \
