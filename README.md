@@ -61,6 +61,10 @@ you can see this workflow in action on our [demo repo](https://github.com/Bearer
 
 ## Inputs
 
+### `version`
+
+**Optional** Specify the Bearer version to use. This must match a Bearer release name.
+
 ### `scanner`
 
 **Optional** Specify the comma-separated scanner to use e.g. `sast,secrets`
