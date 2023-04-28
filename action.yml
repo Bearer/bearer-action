@@ -32,6 +32,10 @@ inputs:
     description: "Specify which severities are included in the report as a comma separated string"
     required: false
     default: ""
+  format:
+    description: "Specify which format to use for the report (json, yaml)"
+    required: false
+    default: ""
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
