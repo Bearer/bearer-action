@@ -63,4 +63,5 @@ runs:
           "--only-rule=${{ inputs.only-rule }}" \
           "--skip-rule=${{ inputs.skip-rule }}" \
           "--skip-path=${{ inputs.skip-path }}" \
+          "--format=${{ inputs.format }}" \
           "--severity=${{ inputs.severity }}"
