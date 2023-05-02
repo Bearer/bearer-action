@@ -16,3 +16,5 @@ RULE_BREACHES="${RULE_BREACHES//$'\r'/%0D}"
 echo "rule_breaches=$RULE_BREACHES" >> $GITHUB_OUTPUT
 
 echo "exit_code=$SCAN_EXIT_CODE" >> $GITHUB_OUTPUT
+
+exit $SCAN_EXIT_CODE

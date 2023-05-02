@@ -9,7 +9,7 @@ Run [Bearer](https://docs.bearer.com/) as a [GitHub Action](https://github.com/f
 ``` yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: bearer/bearer-action@v1.0
+  - uses: bearer/bearer-action@v2
 ```
 
 ### Using custom values for inputs
@@ -18,7 +18,7 @@ steps:
 steps:
   - uses: actions/checkout@v3
   - name: Bearer
-    uses: bearer/bearer-action@v1.0
+    uses: bearer/bearer-action@v2
     with:
       config-file: '/some/path/bearer.yml'
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
@@ -45,16 +45,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Report
         id: report
-        uses: bearer/bearer-action@v1.0
-      - id: summary
-        name: Display Summary
-        uses: actions/github-script@v6
-        with:
-          script: |
-            // github does not support multiline outputs so report is encoded
-            const report = decodeURIComponent(`${{ steps.report.outputs.rule_breaches }}`);
-            const passed = `${{ steps.report.outputs.exit_code }}` == "0";
-            if(!passed){ core.setFailed(report); }
+        uses: bearer/bearer-action@v2
 ```
 
 you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/bearer.yml)
@@ -88,6 +79,10 @@ you can see this workflow in action on our [demo repo](https://github.com/Bearer
 ### `severity`
 
 **Optional** Specify which severities are included in the report as a comma separated string, e.g. `critical,medium`
+
+### `format`
+
+**Optional** Specify which format to use, e.g. `json`
 
 ## Outputs
 
