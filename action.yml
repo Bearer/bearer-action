@@ -60,6 +60,10 @@ runs:
         curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b "$RUNNER_TEMP" "$VERSION"
     - id: run
       shell: bash
+      env:
+        SHA: ${{ github.event.after }}
+        CURRENT_BRANCH: ${{ github.head_ref }}
+        DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
       run: |
         $GITHUB_ACTION_PATH/entrypoint.sh \
           "--scanner=${{ inputs.scanner }}" \
