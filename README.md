@@ -84,6 +84,10 @@ you can see this workflow in action on our [demo repo](https://github.com/Bearer
 
 **Optional** Specify which format to use, e.g. `json`
 
+### `output`
+
+**Optional** Specify where to store the report, e.g. `results.sarif`
+
 ## Outputs
 
 ### `rule_breaches`

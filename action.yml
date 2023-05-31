@@ -33,7 +33,11 @@ inputs:
     required: false
     default: ""
   format:
-    description: "Specify which format to use for the report (json, yaml)"
+    description: "Specify which format to use for the report (json, yaml, sarif, gitlab-sast)"
+    required: false
+    default: ""
+  output:
+    description: "Specify where to store the report"
     required: false
     default: ""
   api-key:
@@ -72,5 +76,6 @@ runs:
           "--skip-rule=${{ inputs.skip-rule }}" \
           "--skip-path=${{ inputs.skip-path }}" \
           "--format=${{ inputs.format }}" \
+          "--output=${{ inputs.output }}" \
           "--severity=${{ inputs.severity }}" \
           "--api-key=${{ inputs.api-key }}"
