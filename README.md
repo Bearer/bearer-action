@@ -9,7 +9,7 @@ Run [Bearer](https://docs.bearer.com/) as a [GitHub Action](https://github.com/f
 ``` yaml
 steps:
   - uses: actions/checkout@v3
-  - uses: bearer/bearer-action@v2
+  - uses: bearer/bearer-action@v3
 ```
 
 ### Using custom values for inputs
@@ -18,7 +18,7 @@ steps:
 steps:
   - uses: actions/checkout@v3
   - name: Bearer
-    uses: bearer/bearer-action@v2
+    uses: bearer/bearer-action@v3
     with:
       config-file: '/some/path/bearer.yml'
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Report
         id: report
-        uses: bearer/bearer-action@v2
+        uses: bearer/bearer-action@v3
 ```
 
 you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/bearer.yml)
@@ -70,7 +70,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Report
         id: report
-        uses: bearer/bearer-action@v2
+        uses: bearer/bearer-action@v3
         with:
           format: rdjson
           output: rd.json
