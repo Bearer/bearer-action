@@ -116,7 +116,7 @@ jobs:
           DD_APP: ${{ secrets.DD_APP}}
           DD_ENGAGEMENT: ${{ secrets.DD_ENGAGEMENT}}
         run: |
-          curl -X POST -F "file=@gl-sast-report.json" -F "product_name=$DD_APP" -F "engagement_name=$DD_ENGAGEMENT" -F "scan_type=GitLab SAST Report" -H "Authorization: Token $DEDO_TOKEN" http://example.com/api/v2/import-scan/
+          curl -X POST -F "file=@gl-sast-report.json" -F "product_name=$DD_APP" -F "engagement_name=$DD_ENGAGEMENT" -F "scan_type=GitLab SAST Report" -H "Authorization: Token $DD_TOKEN" http://example.com/api/v2/import-scan/
 ```
 
 ## Inputs
