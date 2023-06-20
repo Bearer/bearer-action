@@ -85,6 +85,40 @@ jobs:
 ```
 Remember to setup a personal access [token](https://github.com/settings/personal-access-tokens/new) with PR read and write permissions and save it to your repo secrets as `REVIEWDOG_GITHUB_API_TOKEN` and you should be good to go.
 
+### Using [Defect Dojo](https://github.com/DefectDojo/django-DefectDojo) to monitor findings
+
+```yaml
+name: Bearer Defect Dojo
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  rule_check:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Report
+        id: report
+        uses: bearer/bearer-action@v2
+        with:
+          format: gitlab-sast
+          output: gl-sast-report.json
+      - name: Defect Dojo
+        env:
+          DD_TOKEN: ${{ secrets.DD_TOKEN}}
+          DD_APP: ${{ secrets.DD_APP}}
+          DD_ENGAGEMENT: ${{ secrets.DD_ENGAGEMENT}}
+        run: |
+          curl -X POST -F "file=@gl-sast-report.json" -F "product_name=$DD_APP" -F "engagement_name=$DD_ENGAGEMENT" -F "scan_type=GitLab SAST Report" -H "Authorization: Token $DEDO_TOKEN" http://example.com/api/v2/import-scan/
+```
+
 ## Inputs
 
 ### `version`
