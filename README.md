@@ -196,7 +196,7 @@ jobs:
 
 ### `exit-code`
 
-**Optional** Force the exit code when findings are detected
+**Optional** Force the exit code when findings are detected. Set this to 0 (success), for example, for the action to always pass
 
 ## Outputs
 
