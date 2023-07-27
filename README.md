@@ -194,6 +194,10 @@ jobs:
 
 **Optional** Specify where to store the report, e.g. `results.sarif`
 
+### `exit-code`
+
+**Optional** Force the exit code when findings are detected
+
 ## Outputs
 
 ### `rule_breaches`
