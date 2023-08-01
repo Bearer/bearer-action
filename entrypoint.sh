@@ -8,12 +8,11 @@ SCAN_EXIT_CODE=$?
 
 echo "::debug::$RULE_BREACHES"
 
-# Convert to single line
-RULE_BREACHES="${RULE_BREACHES//'%'/%25}"
-RULE_BREACHES="${RULE_BREACHES//$'\n'/%0A}"
-RULE_BREACHES="${RULE_BREACHES//$'\r'/%0D}"
+EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
 
-echo "rule_breaches=$RULE_BREACHES" >> $GITHUB_OUTPUT
+echo "rule_breaches<<$EOF" >> $GITHUB_OUTPUT
+echo "$RULE_BREACHES" >> $GITHUB_OUTPUT
+echo "$EOF" >> $GITHUB_OUTPUT
 
 echo "exit_code=$SCAN_EXIT_CODE" >> $GITHUB_OUTPUT
 
