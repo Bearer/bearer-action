@@ -79,7 +79,7 @@ jobs:
           diff: true
 ```
 
-See our guide on [configuring a scan](/guides/configure-scan#only-report-new-findings-on-a-branch)
+See our guide on [configuring a scan](https://docs.bearer.com/guides/configure-scan#only-report-new-findings-on-a-branch)
 for more information on differential scans.
 
 ### Using [Reviewdog](https://github.com/Reviewdog/Reviewdog) for PR review comments with Bearer
