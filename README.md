@@ -93,6 +93,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   rule_check:
@@ -112,11 +113,10 @@ jobs:
           reviewdog_version: latest
       - name: Run reviewdog
         env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.REVIEWDOG_GITHUB_API_TOKEN }}
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat rd.json | reviewdog -f=rdjson -reporter=github-pr-review
 ```
-Remember to setup a personal access [token](https://github.com/settings/personal-access-tokens/new) with PR read and write permissions and save it to your repo secrets as `REVIEWDOG_GITHUB_API_TOKEN` and you should be good to go.
 
 ### Using [Defect Dojo](https://github.com/DefectDojo/django-DefectDojo) to monitor findings
 
