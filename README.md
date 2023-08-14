@@ -50,7 +50,11 @@ jobs:
 
 you can see this workflow in action on our [demo repo](https://github.com/Bearer/bear-publishing/actions/workflows/bearer.yml)
 
-### Using [Reviewdog](https://github.com/Reviewdog/Reviewdog) for PR review comments with Bearer
+### Pull Request Diff
+
+When the Bearer action is being used to check a pull request, you can tell the
+action to only report findings introduced within the pull request by setting
+the `diff` input parameter to `true`.
 
 ```yaml
 name: Bearer PR Check
@@ -72,18 +76,47 @@ jobs:
         id: report
         uses: bearer/bearer-action@v2
         with:
+          diff: true
+```
+
+See our guide on [configuring a scan](https://docs.bearer.com/guides/configure-scan#only-report-new-findings-on-a-branch)
+for more information on differential scans.
+
+### Using [Reviewdog](https://github.com/Reviewdog/Reviewdog) for PR review comments with Bearer
+
+```yaml
+name: Bearer PR Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  rule_check:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Report
+        id: report
+        uses: bearer/bearer-action@v2
+        with:
           format: rdjson
           output: rd.json
+          diff: true
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
       - name: Run reviewdog
         env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.REVIEWDOG_GITHUB_API_TOKEN }}
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat rd.json | reviewdog -f=rdjson -reporter=github-pr-review
 ```
-Remember to setup a personal access [token](https://github.com/settings/personal-access-tokens/new) with PR read and write permissions and save it to your repo secrets as `REVIEWDOG_GITHUB_API_TOKEN` and you should be good to go.
 
 ### Using [Defect Dojo](https://github.com/DefectDojo/django-DefectDojo) to monitor findings
 

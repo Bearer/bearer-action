@@ -48,6 +48,10 @@ inputs:
     description: "For use with Bearer Cloud"
     required: false
     default: ""
+  diff:
+    description: "Enable differential scanning. Only supported for pull request events"
+    required: false
+    default: "false"
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
@@ -71,7 +75,9 @@ runs:
       env:
         SHA: ${{ github.event.pull_request.head.sha }}
         CURRENT_BRANCH: ${{ github.head_ref }}
+        DIFF_BASE_BRANCH: ${{ fromJSON(inputs.diff) && github.base_ref || '' }}
         DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        GITHUB_TOKEN: ${{ github.token }}
       run: |
         $GITHUB_ACTION_PATH/entrypoint.sh \
           "--scanner=${{ inputs.scanner }}" \
