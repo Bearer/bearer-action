@@ -52,6 +52,10 @@ inputs:
     description: "Enable differential scanning. Only supported for pull request events"
     required: false
     default: "false"
+  exit-code:
+    description: "Forces the exit-code when errors are reported"
+    required: false
+    default: ""
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
@@ -88,5 +92,6 @@ runs:
           "--exclude-fingerprint=${{ inputs.exclude-fingerprint }}" \
           "--format=${{ inputs.format }}" \
           "--output=${{ inputs.output }}" \
+          "--exit-code=${{ inputs.exit-code }}" \
           "--severity=${{ inputs.severity }}" \
           "--api-key=${{ inputs.api-key }}"
