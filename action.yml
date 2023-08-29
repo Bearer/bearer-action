@@ -16,6 +16,10 @@ inputs:
     description: "configuration file path"
     required: false
     default: ""
+  bearer-ignore-file:
+    description: "bearer.ignore file path"
+    required: false
+    default: ""
   only-rule:
     description: "Specify the comma-separated ids of the rules you would like to run. Skips all other rules."
     required: false
@@ -86,6 +90,7 @@ runs:
         $GITHUB_ACTION_PATH/entrypoint.sh \
           "--scanner=${{ inputs.scanner }}" \
           "--config-file=${{ inputs.config-file }}" \
+          "--bearer-ignore-file=${{ inputs.bearer-ignore-file }}" \
           "--only-rule=${{ inputs.only-rule }}" \
           "--skip-rule=${{ inputs.skip-rule }}" \
           "--skip-path=${{ inputs.skip-path }}" \
