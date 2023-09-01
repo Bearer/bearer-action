@@ -120,8 +120,9 @@ jobs:
 
 ### Using [Bearer Cloud](https://docs.bearer.com/guides/bearer-cloud/) to monitor findings
 
-```
+```yaml
 name: Bearer Cloud
+
 on:
   push:
     branches:
