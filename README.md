@@ -118,7 +118,7 @@ jobs:
           cat rd.json | reviewdog -f=rdjson -reporter=github-pr-review
 ```
 
-### Using [Bearer Cloud](https://my.bearer.sh/users/sign_up) to monitor findings
+### Using [Bearer Cloud](https://docs.bearer.com/guides/bearer-cloud/) to monitor findings
 
 ```
 name: Bearer Cloud
