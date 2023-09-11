@@ -1,5 +1,5 @@
 name: "Bearer Action"
-description: "A data-first security scanner that finds risks and vulnerabilities in your code so you can protect sensitive data."
+description: "Bearer is a free and open SAST tool that analyzes your source code to help find and fix security and privacy risks."
 branding:
   icon: "check-square"
   color: "purple"
