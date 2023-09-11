@@ -1,4 +1,4 @@
-name: "Bearer Security"
+name: "Bearer Action"
 description: "A data-first security scanner that finds risks and vulnerabilities in your code so you can protect sensitive data."
 branding:
   icon: "check-square"
