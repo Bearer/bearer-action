@@ -69,7 +69,6 @@ permissions:
 jobs:
   rule_check:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v3
       - name: Run Report
@@ -98,9 +97,11 @@ permissions:
 jobs:
   rule_check:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v3
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
       - name: Run Report
         id: report
         uses: bearer/bearer-action@v2
@@ -108,10 +109,8 @@ jobs:
           format: rdjson
           output: rd.json
           diff: true
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
       - name: Run reviewdog
+        if: always()
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -157,7 +156,6 @@ permissions:
 jobs:
   rule_check:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v3
       - name: Run Report
@@ -167,6 +165,7 @@ jobs:
           format: gitlab-sast
           output: gl-sast-report.json
       - name: Defect Dojo
+        if: always()
         env:
           DD_TOKEN: ${{ secrets.DD_TOKEN}}
           DD_APP: ${{ secrets.DD_APP}}
