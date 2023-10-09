@@ -59,7 +59,11 @@ inputs:
   quiet:
     description: "Suppress non-essential messages"
     required: false
-    default: "false"
+    default: ""
+  hide-progress-bar:
+    description: "Hide progress bar from output"
+    required: false
+    default: "true"
   exit-code:
     description: "Forces the exit-code when errors are reported"
     required: false
@@ -104,4 +108,5 @@ runs:
           "--exit-code=${{ inputs.exit-code }}" \
           "--severity=${{ inputs.severity }}" \
           "--api-key=${{ inputs.api-key }}" \
-          "--quiet=${{ inputs.quiet }}"
+          "--quiet=${{ inputs.quiet }}" \
+          "--hide-progress-bar=${{ inputs.hide-progress-bar }}"
