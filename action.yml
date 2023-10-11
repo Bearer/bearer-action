@@ -56,6 +56,14 @@ inputs:
     description: "Enable differential scanning. Only supported for pull request events"
     required: false
     default: "false"
+  quiet:
+    description: "Suppress non-essential messages"
+    required: false
+    default: ""
+  hide-progress-bar:
+    description: "Hide progress bar from output"
+    required: false
+    default: "true"
   exit-code:
     description: "Forces the exit-code when errors are reported"
     required: false
@@ -99,4 +107,6 @@ runs:
           "--output=${{ inputs.output }}" \
           "--exit-code=${{ inputs.exit-code }}" \
           "--severity=${{ inputs.severity }}" \
-          "--api-key=${{ inputs.api-key }}"
+          "--api-key=${{ inputs.api-key }}" \
+          "--quiet=${{ inputs.quiet }}" \
+          "--hide-progress-bar=${{ inputs.hide-progress-bar }}"
