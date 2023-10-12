@@ -115,7 +115,7 @@ runs:
         GITHUB_TOKEN: ${{ github.token }}
       run: |
         set +e
-        RULE_BREACHES=`$RUNNER_TEMP/bearer scan "${{ inputs.path }}"`
+        RULE_BREACHES=`$RUNNER_TEMP/bearer scan "${{ inputs.path }}" --host=my.staging.bearer.sh`
         SCAN_EXIT_CODE=$?
         set -e
 
