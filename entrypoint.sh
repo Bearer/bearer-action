@@ -3,7 +3,10 @@
 # Filter out any empty args
 args=$(for var in "$@"; do echo "$var";done | grep =.)
 
-RULE_BREACHES=`$RUNNER_TEMP/bearer scan ${args//$'\n'/ } .`
+path_arg=$(echo "$args" | grep -oP '(?<=--path=)[^\s]+')
+other_args=$(echo "$args" | sed -E 's/--path=[^\s]+//')
+
+RULE_BREACHES=`$RUNNER_TEMP/bearer scan ${other_args//$'\n'/ } $path_arg`
 SCAN_EXIT_CODE=$?
 
 echo "::debug::$RULE_BREACHES"
