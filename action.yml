@@ -68,6 +68,10 @@ inputs:
     description: "Forces the exit-code when errors are reported"
     required: false
     default: ""
+  path:
+    description: "The path to scan"
+    required: false
+    default: "."
 outputs:
   rule_breaches:
     description: "Details of any rule breaches that occur"
@@ -110,4 +114,5 @@ runs:
           "--severity=${{ inputs.severity }}" \
           "--api-key=${{ inputs.api-key }}" \
           "--quiet=${{ inputs.quiet }}" \
-          "--hide-progress-bar=${{ inputs.hide-progress-bar }}"
+          "--hide-progress-bar=${{ inputs.hide-progress-bar }}" \
+          "--path=${{ inputs.path }}"

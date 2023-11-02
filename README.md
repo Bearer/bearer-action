@@ -20,6 +20,7 @@ steps:
   - name: Bearer
     uses: bearer/bearer-action@v2
     with:
+      path: 'some-path-to-scan'
       config-file: '/some/path/bearer.yml'
       only-rule: 'ruby_lang_cookies,ruby_lang_http_post_insecure_with_data'
       skip-path: 'users/*.go,users/admin.sql'
