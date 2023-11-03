@@ -93,6 +93,20 @@ runs:
     - id: run
       shell: bash
       env:
+        BEARER_SCANNER: ${{ inputs.scanner }}
+        BEARER_CONFIG_FILE: ${{ inputs.config-file }}
+        BEARER_IGNORE_FILE: ${{ inputs.bearer-ignore-file }}
+        BEARER_ONLY_RULE: ${{ inputs.only-rule }}
+        BEARER_SKIP_RULE: ${{ inputs.skip-rule }}
+        BEARER_SKIP_PATH: ${{ inputs.skip-path }}
+        BEARER_EXCLUDE_FINGERPRINT: ${{ inputs.exclude-fingerprint }}
+        BEARER_FORMAT: ${{ inputs.format }}
+        BEARER_OUTPUT: ${{ inputs.output }}
+        BEARER_EXIT_CODE: ${{ inputs.exit-code }}
+        BEARER_SEVERITY: ${{ inputs.severity }}
+        BEARER_API_KEY: ${{ inputs.api-key }}
+        BEARER_QUIET: ${{ inputs.quiet }}
+        BEARER_HIDE_PROGRESS_BAR: ${{ inputs.hide-progress-bar }}
         SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         PR_NUMBER: ${{ github.event.pull_request.number }}
         CURRENT_BRANCH: ${{ github.head_ref }}
@@ -100,19 +114,19 @@ runs:
         DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         GITHUB_TOKEN: ${{ github.token }}
       run: |
-        $GITHUB_ACTION_PATH/entrypoint.sh \
-          "--scanner=${{ inputs.scanner }}" \
-          "--config-file=${{ inputs.config-file }}" \
-          "--bearer-ignore-file=${{ inputs.bearer-ignore-file }}" \
-          "--only-rule=${{ inputs.only-rule }}" \
-          "--skip-rule=${{ inputs.skip-rule }}" \
-          "--skip-path=${{ inputs.skip-path }}" \
-          "--exclude-fingerprint=${{ inputs.exclude-fingerprint }}" \
-          "--format=${{ inputs.format }}" \
-          "--output=${{ inputs.output }}" \
-          "--exit-code=${{ inputs.exit-code }}" \
-          "--severity=${{ inputs.severity }}" \
-          "--api-key=${{ inputs.api-key }}" \
-          "--quiet=${{ inputs.quiet }}" \
-          "--hide-progress-bar=${{ inputs.hide-progress-bar }}" \
-          "--path=${{ inputs.path }}"
+        set +e
+        RULE_BREACHES=`$RUNNER_TEMP/bearer scan "${{ inputs.path }}"`
+        SCAN_EXIT_CODE=$?
+        set -e
+
+        echo "::debug::$RULE_BREACHES"
+
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+
+        echo "rule_breaches<<$EOF" >> $GITHUB_OUTPUT
+        echo "$RULE_BREACHES" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT
+
+        echo "exit_code=$SCAN_EXIT_CODE" >> $GITHUB_OUTPUT
+
+        exit $SCAN_EXIT_CODE
