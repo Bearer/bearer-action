@@ -84,12 +84,7 @@ runs:
   steps:
     - shell: bash
       run: |
-        VERSION="${{ inputs.version }}"
-        if [[ ! -z "$VERSION" ]]; then
-          VERSION="v${VERSION#v}"
-        fi
-
-        curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b "$RUNNER_TEMP" "$VERSION"
+        cp ${{ github.action_path }}/bearer $RUNNER_TEMP/
     - id: run
       shell: bash
       env:
@@ -115,7 +110,7 @@ runs:
         GITHUB_TOKEN: ${{ github.token }}
       run: |
         set +e
-        RULE_BREACHES=`$RUNNER_TEMP/bearer scan "${{ inputs.path }}"`
+        RULE_BREACHES=`$RUNNER_TEMP/bearer scan "${{ inputs.path }}" --debug`
         SCAN_EXIT_CODE=$?
         set -e
 
