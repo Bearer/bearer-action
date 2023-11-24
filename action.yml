@@ -82,6 +82,15 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - id: check_git_installed
+      shell: bash
+      run: |
+        if git --version &> /dev/null; then
+          echo "Git is installed. Version: $(git --version)"
+        else
+          echo "Git is not installed on this system."
+          exit 1
+        fi
     - shell: bash
       run: |
         VERSION="${{ inputs.version }}"
