@@ -118,29 +118,6 @@ jobs:
           cat rd.json | reviewdog -f=rdjson -reporter=github-pr-review
 ```
 
-### Using [Bearer Cloud](https://docs.bearer.com/guides/bearer-cloud/) to monitor findings
-
-```yaml
-name: Bearer Cloud
-
-on:
-  push:
-    branches:
-      - main
-permissions:
-  contents: read
-jobs:
-  rule_check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Report
-        id: report
-        uses: bearer/bearer-action@v2
-        with:
-          api-key: ${{ secrets.BEARER_TOKEN }}
-```
-
 ### Using [Defect Dojo](https://github.com/DefectDojo/django-DefectDojo) to monitor findings
 
 ```yaml
